@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Foto Alumni UNIKU</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.gallery img {
+    width: 150px; /* Atur lebar gambar */
+    cursor: pointer;
+    opacity: 0; /* Mulai dengan gambar tidak terlihat */
+    transition: opacity 0.5s ease;
+}
+
+.modal {
+    display: none; /* Sembunyikan modal secara default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: rgb(146, 14, 14);
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+body{
+    background-color: rgb(86, 152, 244);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: aliceblue;
+}
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="gallery">
+        <h2>Maulana,S.E.</h2>
+        <img src="laki-laki1.jpg" alt="Alumni 1">
+        <h2>Syifa,S.Kom.</h2>
+        <img src="perempuan1.jpg" alt="Alumni 2">
+        <h2>Naufan,S.Pd.</h2>
+        <img src="laki-laki2.jpg" alt="Alumni 3">
+        <h2>Almaira,S.H.</h2>
+        <img src="perempuan2.jpg" alt="Alumni 4">
+    </div>
+
+    <div class="modal" id="modal">
+        <span class="close" id="close">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+    <script>
+        $(document).ready(function() {
+    // Fade-in effect untuk gambar
+    $('.gallery img').each(function(index) {
+        $(this).delay(index * 300).fadeTo(500, 1);
+    });
+
+    // Ketika gambar diklik, tampilkan dalam modal
+    $('.gallery img').on('click', function() {
+        $('#modal-img').attr('src', $(this).attr('src'));
+        $('#modal').fadeIn();
+    });
+
+    // Menutup modal ketika tombol close diklik
+    $('#close').on('click', function() {
+        $('#modal').fadeOut();
+    });
+
+    // Menutup modal ketika area di luar gambar diklik
+    $('#modal').on('click', function(event) {
+        if ($(event.target).is('#modal')) {
+            $('#modal').fadeOut();
+        }
+    });
+});
+    </script>
+</body>
+</html>
